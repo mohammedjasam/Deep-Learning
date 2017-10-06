@@ -1,29 +1,30 @@
-from random import randint
-# from future import print
+import random
 
-l = []
-eta = 0.01
+# Randomly assigns weights to W0 and W1
+weight = []
+weight.append(random.random())
+weight.append(random.random())
+
+# Error list
+error = []
+
+# Extract all the data from the file to list examples
+examples = []
 with open("zdata.txt", "r") as f:
     for line in f:
-        s = line[:-1].split("\t")
-        l.append((int(s[0]), int(s[1])))
+        line = line[:-1].split("\t")
+        examples.append((int(line[0]), int(line[1])))
 
-w0 = randint(1,101)
-w1 = randint(1,101)
-yErr = []
+for i in range(len(examples)):
+    error.append(0)
+
+print(examples[-1][0])
+# Running 1500 iterations
+X = [1,0] # Xi values!
 for i in range(1500):
-    for j in range(len(l)):
-        people = l[j][0]
-        calories = l[j][1]
-        y = calories
-        yCap = (w0 * 1) + (w1 * people)
-        yE = y - yCap
-        yErr.append(yE)
-    print(sum(yErr)/len(l))
-
-    for k in range(len(l)):
-        w0 = w0 + eta * yErr[k] * 1
-        w1 = w1 + eta * yErr[k] * l[k][0]
-    yErr=[]
-
-print(w0, w1)
+    for k in range(len(examples)):
+        X[1] = examples[k][0]
+        Y = examples[k][1]
+        YCap = (weight[0] * X[0]) + (weight[1] * X[1])
+        error[k] = error[k] + (Y - YCap)*examples[-1][0]
+    
