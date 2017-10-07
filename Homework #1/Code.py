@@ -19,6 +19,7 @@ eta = 0.001
 # Running 1500 iterations
 X = [1, 0] # Xi values!
 delta = 0
+# for x in range(200):
 for x in range(1500):
     for k in range(len(examples)):
         X[1] = examples[k][0]
@@ -32,7 +33,7 @@ for x in range(1500):
     for i in range(2):
         error[i] = (1 / len(examples)) * error[i]
         weight[i] = weight[i] + eta * error[i]
-    # print(delta)
+    print(error)
     error = [0, 0]
 
 SSE = delta * delta
@@ -41,4 +42,4 @@ print("Programmer : Mohammed Jasam")
 print("Learning Rate eta = 0.001")
 print("After 1500 iterations:")
 print("Sum of Squares Error = " + str(SSE))
-print("Weights:\nw0 = "+str(weight[0])+"\nw1 = "+str(weight[1]))
+print("Weights:\nw0 = " + str(weight[0]) + "\nw1 = " + str(weight[1]))
