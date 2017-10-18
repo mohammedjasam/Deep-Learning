@@ -55,9 +55,10 @@ for ab in range(1000):
             for index in range(len(w)):
                 w[index] = w[index] + eta * delta * p * (1 - p) * X[index]
                 # w[index] = w[index] + eta * delta * X[index]
-    cSSE.append(sum(SSE))
-    print(ab , sorted(cSSE)[0])
-
+    cSSE.append((sum(SSE),w))
+    s = sorted(cSSE)
+    print(ab, s[0][0], s[-1][0])
+print(s[0][0], s[-1][0])
 # print(sorted(cSSE))
 # # Output Part
 # print("CS-5001 : HW#2 : Logistic Regression.")
