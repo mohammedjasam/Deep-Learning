@@ -11,26 +11,27 @@ X = []
 examples = []
 YCap = 0
 error = []
-eta = 0.05
+eta = 0.025
 delta = 0
+w = []
+SSE = []
+
 
 # Collect examples from the data
 with open("pizzacatdata.txt") as f:
     for line in f:
         examples.append( ([int(x) for x in line[:-4].split()], int(line[-3])) )
-
+# print(examples)
 
 # Randomly assigned 5 weights
-w = []
 for i in range(5):
     w.append(randint(-100,100))
-# w = [77, -45, -29, -41, -76]
+
 print("Initial Weights")
 print(w)
 # print()
 
-SSE = []
-cSSE = []
+# cSSE = []
 # Run Experiment 5000 times
 iterations = 5000
 for i in range(iterations):
@@ -41,7 +42,7 @@ for i in range(iterations):
         Y = e[1]
 
         for j in range(5):
-            YCap += w[j]*X[j]
+            YCap += w[j] * X[j]
         YCap = sigmoid(YCap)
         p = YCap
 
@@ -51,11 +52,7 @@ for i in range(iterations):
         for index in range(len(w)):
             w[index] = w[index] + eta * delta * p * (1 - p) * X[index]
             # w[index] = w[index] + eta * delta * X[index]
-#     cSSE.append((sum(SSE),w))
-#     s = sorted(cSSE)
-#     print(ab, s[0][0], s[-1][0])
-# print(s[0][1], s[-1][1])
-# print(sorted(cSSE))
+
 # Output Part
 print("CS-5001 : HW#2 : Logistic Regression.")
 print("Programmer : Mohammed Jasam")
