@@ -26,9 +26,9 @@ with open("pizzacatdata.txt") as f:
 # Randomly assigned 5 weights
 for i in range(5):
     w.append(randint(-100,100))
-
-print("Initial Weights")
-print(w)
+# 
+# print("Initial Weights")
+# print(w)
 # print()
 
 # cSSE = []
